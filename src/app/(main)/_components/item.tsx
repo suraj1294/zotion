@@ -22,7 +22,7 @@ import {
   Trash,
 } from "lucide-react";
 import { toast } from "sonner";
-import { useUser } from "@clerk/clerk-react";
+import { useUser } from "@clerk/react";
 import { api } from "../../../../convex/_generated/api";
 import { Id } from "../../../../convex/_generated/dataModel";
 

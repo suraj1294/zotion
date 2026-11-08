@@ -3,7 +3,7 @@
 import { File } from "lucide-react";
 import { useQuery } from "convex/react";
 import { useRouter } from "next/navigation";
-import { useUser } from "@clerk/clerk-react";
+import { useUser } from "@clerk/react";
 
 import {
   CommandDialog,
@@ -15,22 +15,24 @@ import {
 } from "@/components/ui/command";
 import { useSearch } from "@/hooks/use-search";
 
-import { useEffect, useState } from "react";
+import { useEffect, useSyncExternalStore } from "react";
 import { api } from "../../convex/_generated/api";
+
+const subscribe = () => () => {};
 
 export function SearchCommand() {
   const { user } = useUser();
   const router = useRouter();
   const documents = useQuery(api.documents.getSearch);
-  const [isMounted, setIsMounted] = useState(false);
+  const isMounted = useSyncExternalStore(
+    subscribe,
+    () => true,
+    () => false
+  );
 
   const toggle = useSearch((store) => store.toggle);
   const isOpen = useSearch((store) => store.isOpen);
   const onClose = useSearch((store) => store.onClose);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
 
   useEffect(() => {
     const down = (e: KeyboardEvent) => {

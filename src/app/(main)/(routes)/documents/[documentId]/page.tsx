@@ -2,7 +2,6 @@
 
 import { useMutation, useQuery } from "convex/react";
 import dynamic from "next/dynamic";
-import { useMemo } from "react";
 
 import { Toolbar } from "@/components/toolbar";
 import { Cover } from "@/components/cover";
@@ -17,11 +16,9 @@ interface DocumentIdPageProps {
   }>;
 }
 
+const Editor = dynamic(() => import("@/components/editor"), { ssr: false });
+
 export default function DocumentIdPage({ params }: DocumentIdPageProps) {
-  const Editor = useMemo(
-    () => dynamic(() => import("@/components/editor"), { ssr: false }),
-    []
-  );
   const { documentId } = use(params);
 
   const document = useQuery(api.documents.getById, {

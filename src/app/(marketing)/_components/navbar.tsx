@@ -5,7 +5,7 @@ import { useScrollTop } from "@/hooks/use-scroll-top";
 import { cn } from "@/lib/utils";
 import { Logo } from "./logo";
 import { ModeToggle } from "@/components/mode-toggle";
-import { SignInButton, UserButton } from "@clerk/clerk-react";
+import { SignInButton, UserButton } from "@clerk/react";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/spinner";
 import Link from "next/link";
@@ -41,7 +41,7 @@ export function Navbar() {
             <Button variant="ghost" size="sm" asChild>
               <Link href="/documents">Enter Zotion</Link>
             </Button>
-            <UserButton afterSignOutUrl="/" />
+            <UserButton />
           </>
         )}
         <ModeToggle />
